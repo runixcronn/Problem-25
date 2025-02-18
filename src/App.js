@@ -1,5 +1,5 @@
 import { CheckIcon, MoonIcon, SunIcon } from "@heroicons/react/20/solid";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
 // Bileşen açılış sayfası (Landing Page) oluşturur ve "Fiyatlandırmaya gidin" butonuna tıklandığında fiyatlandırma bölümüne kaydırma işlemi yapılmasını sağlar. Ayrıca "Satın alma planı" butonuna tıklandığında sayfanın en üstüne pürüzsüz şekilde kaydırılması beklenmektedir. Şu anda bu işlev eksik durumda.
 
@@ -18,19 +18,8 @@ import { useRef, useState, useEffect } from "react";
 export default function LandingPage() {
   const pricingRef = useRef();
   const topRef = useRef();
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("darkMode") === "true";
-  });
+  const [darkMode, setDarkMode] = useState(false);
   const [bgColor, setBgColor] = useState("");
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("darkMode", darkMode);
-  }, [darkMode]);
 
   function toggleDarkMode() {
     setDarkMode((prevMode) => !prevMode);
